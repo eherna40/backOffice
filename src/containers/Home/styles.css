@@ -1,0 +1,22 @@
+.Home{
+  padding: 30px;
+}
+
+.Home .Usercounter{
+  color:gray;
+}
+
+.Home .Usercounter .Usercounter-title{
+  font-size: 12px;
+}
+
+.Home .Usercounter .Usercounter-total{
+  font-size: 50px;
+  font-weight: bold;
+  color: #101010;
+}
+
+.Home .Home-widget{
+  padding: 20px;
+  background: white;
+}

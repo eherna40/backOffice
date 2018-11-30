@@ -1,0 +1,39 @@
+.input-search,
+.input-search form,
+.input-search form input{
+    width: 100%;
+}
+
+.input-search form{
+    position: relative;
+    height: 40px;
+}
+
+.input-search form input.search-input{
+    border: 0;
+    border-bottom: 2px solid #DFE1EA;
+    background: transparent;
+    font-size: 15px;
+    position: relative;
+    z-index: 2;
+}
+
+
+.input-search form input.search-input:focus{
+outline: none;
+box-shadow: none;
+}
+.label-input-search{
+    position: absolute;
+    top: 12px;
+    font-size: 15px;
+    transition: .2s linear all;
+    z-index: 1;
+}
+
+.input-search form input.search-input:focus + .label-input-search,
+.label-input-search.static{
+    top: -8px;
+    font-size: 10px;
+}
+

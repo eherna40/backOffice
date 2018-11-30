@@ -1,0 +1,28 @@
+.profile-data-name div:first-child{
+    font-size: 25px;
+    font-weight: 900;
+    margin-bottom: 0;
+    line-height: 1;
+}
+.profile-data-name small{
+    font-size: 10px;
+    line-height: 12px;
+    color: lightgray;
+}
+
+.profile-data-name{
+    margin-bottom: 30px;
+}
+
+.comunity{
+    margin-bottom: 10px;
+}
+.comunity .comunity-title{
+    color: grey;
+    font-size: 10px;
+}
+.comunity .comunity-desc{
+    color: grey;
+    font-size: 12px;
+    font-style: italic;
+}

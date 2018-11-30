@@ -1,0 +1,58 @@
+.adduser{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: rgba(0,0,0,.95);
+    z-index: 100;
+}
+
+.adduser-content{
+    position: relative;
+    width: 30%;
+    padding: 30px 30px 30px 30px;
+    border-radius: 4px;
+    transition: color .3s ease-in-out,border-color .3s ease-in-out,background-color .3s ease-in-out; 
+    color: hsla(0,0%,100%,.8);
+    background-color: transparent;
+    background-clip: padding-box;
+    border: 1px solid #2b3553;
+    border-radius: .25rem;
+    box-shadow: none;
+    transition: all .2s cubic-bezier(.68,-.55,.265,1.55);
+}
+.icon-close{
+    text-align: right;
+    margin-bottom: 10px;
+    position: absolute;
+    right: 10px;
+    padding: 10px;
+    cursor: pointer;
+    top: 10px;
+}
+.adduser-title{
+    margin-bottom: 30px;
+    font-size: 20px;
+}
+
+.error-input{
+    border-color: #d50000 !important;
+}
+button.user-button-normal{
+    background: #e14eca;
+    background-image: linear-gradient(to bottom left,#e14eca,#ba54f5,#e14eca);
+    background-size: 210% 210%;
+    background-position: 100% 0;
+    background-color: #e14eca;
+    transition: all .15s ease;
+    margin-bottom: 20px;
+    box-shadow: none;
+    color: #fff;
+}
+
+
+.form-control-error p{
+    display:none;
+    color: #d50000;
+}
