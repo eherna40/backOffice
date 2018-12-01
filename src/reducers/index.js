@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import homereducer from '../containers/Home/reducer'
 import shopReducer from '../containers/Shops/reducer'
+import loginReducer from '../containers/Login/reducer'
 
 export default combineReducers({
-  homereducer,
   shopReducer,
+  loginReducer
   
 });

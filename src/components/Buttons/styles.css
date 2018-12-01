@@ -1,0 +1,12 @@
+.button-neutral{
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.title-button{
+    BACKGROUND: lightgray;
+    border-radius: 3px;
+    padding: 10px 50px;
+    min-width: 200px;
+    text-align: center;
+}

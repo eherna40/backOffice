@@ -1,0 +1,78 @@
+
+.shop-info-content{
+    display: flex;
+}
+
+
+.shop-info-content{
+background: white;
+border-radius: 5px;
+background: white;
+border-radius: 5px;
+height: 90px;
+}
+.shop-title-info{
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    text-align: center;
+    padding: 0 5px;
+}
+
+.shops-list{
+    padding: 30px 0px;
+}
+
+.shop-name{
+    padding: 5px 0px;
+    border-radius: 3px;
+    color: #505050;
+    margin-bottom: 5px;
+}
+
+.shop-name-title{
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.shop-title-info{
+    font-weight: bold;
+    color: gray;
+    background: lightgray;
+    height: 100%;
+}
+
+.shop-content-block{
+    height: 100%;
+    background: white;
+    padding: 20px 30px;
+}
+
+.shop-block-border{
+    border-left: 1px solid lightgray;
+    height: 100%;
+    padding: 0 30px;
+}
+
+.shop-content-title{
+    color: #62D6D8;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+
+.shop-text-subtitle{
+    font-size: 14px;
+    color: #505050;
+    font-weight: bold;
+}
+
+.shop-address{
+    width: 350px;
+}
+
+.shop-address-street,
+.shop-address-country{
+    font-size: 10px;
+    color: gray;
+}

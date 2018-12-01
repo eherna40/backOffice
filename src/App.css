@@ -16,11 +16,6 @@ body{
 
 }
 
-.content{
-  padding: 10px 30px 30px 280px;
-  min-height: calc(100vh - 70px);
-}
-
 
 .d-inline-flex{
   display: inline-flex;
@@ -75,4 +70,9 @@ body{
 
 .align-items-flex-end{
   align-items: flex-end;
+}
+
+.container{
+  max-width: 1200px;
+  margin: 0 auto;
 }

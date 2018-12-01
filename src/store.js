@@ -3,9 +3,19 @@ import { connectRouter, routerMiddleware } from 'connected-react-router';
 import createHistory from 'history/createBrowserHistory';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import createSagaMiddleware from 'redux-saga';
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage' // defaults to localStorage for web and AsyncStorage for react-native
+
 
 import rootReducer from './reducers';
 import sagas from './sagas';
+
+
+const persistConfig = {
+  key: 'root',
+  storage,
+}
+
 
 export const history = createHistory();
 
@@ -31,12 +41,17 @@ const composedEnhancers = composeWithDevTools(
 
 );
 
+
+const persistedReducer = persistReducer(persistConfig, rootReducer)
+
 const store = createStore(
-  connectRouter(history)(rootReducer),
+  connectRouter(history)(persistedReducer),
   initialState,
   composedEnhancers
 );
 
+let persistor = persistStore(store)
+
 sagaMiddleware.run(sagas);
 
-export default store;
+export  {store, persistor};

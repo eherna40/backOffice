@@ -2,6 +2,61 @@ import { firebaseApp as firebase, database } from './config'
 import { KEY_GOOGLE_MAPS } from '../constant';
 import { googleMapsClient } from '../googlemaps';
 
+
+export const signOutAdmin = () => {
+    firebase.auth().signOut()
+    .then(function() {
+        // Sign-out successful.
+      }).catch(function(error) {
+        // An error happened.
+      });
+}
+
+
+export const signInWithEmailAndPassword = async(values) => {
+
+    const {email, password} = values
+    const result = await firebase.auth().signInWithEmailAndPassword(email, password)
+    .then((res) => {
+        const user = res.user.toJSON()
+        return {
+
+            status: 'success',
+            ...user
+        }
+    })
+    .catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(error)
+        return {
+            status: 'error',
+            error
+        }
+        // ...
+      });
+      return result
+}
+
+
+export const verifyPermission = async( uid ) => {
+    console.log(uid)
+    let docRef = await database.collection("ADMIN").doc(uid)
+        .get().then((doc) => {
+        if (doc.exists && doc.data().active) {
+            return true
+        } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+            return false
+        }
+    }).catch((error) => {
+        console.log("Error getting document:", error);
+    });
+    return docRef
+}
+
 export const shopCreate = (values) => {
     console.log(values)
 }
