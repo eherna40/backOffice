@@ -1,3 +1,104 @@
 .shops-container{
     padding: 0 20px;
 }
+
+
+.add-shop{
+    position: fixed;
+    background: rgba(0,0,0,.8);
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+.add-shop-container{
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.add-shop-form{
+    background: white;
+    padding: 30px;
+    border-radius: 4px;
+    min-height: 500px;
+    max-width: 500px;
+    color:#505050;
+}
+
+
+.add-shop-form-title{
+    font-size: 25px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+#autocomplete{
+    position: relative;
+}
+
+.input-content-street{
+    width: 70%
+}
+.input-content-street_number{
+    width: 30%
+}
+.input-content-cp{
+    width: 50%
+}
+.input-content-country{
+    width: 50%
+}
+.input-content-state{
+    width: 50%
+}
+.input-content-city{
+    width: 50%
+}
+.input-content-name{
+    width: 100%
+}
+
+.input-content-phone{
+    width: 50%;
+}
+
+.input-content-email{
+    width: 50%;
+}
+
+.add-shop-input-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+.account-shop{
+    margin-top: 30px;
+}
+.account-shop-container{
+    padding: 10px 60px;
+}
+
+.account-shop-title{
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.btn-submit{
+    text-align: center;
+}
+
+.input-content-active{
+    width: 100%;
+}
+
+.visible-text{
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}

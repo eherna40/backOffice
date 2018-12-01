@@ -5,9 +5,9 @@ function BtnNeutral(props) {
   const { title } = props
   return (
     <div onClick={props.handleClick} className="button-neutral">
-      <div className="title-button">
+      <span className="title-button">
         {title}
-      </div>
+      </span>
     </div>
   )
 }

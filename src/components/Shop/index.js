@@ -25,8 +25,10 @@ export default function Shop(props) {
 		street_number,
 		url,
 		user,
+		active,
 
 	} = props
+	console.log(active)
 	return (
 		<div className="shop">
 			<div className="shop-content">
@@ -35,7 +37,7 @@ export default function Shop(props) {
 				</div>
 				<div className="shop-info-content">
 					<div className="shop-title-info">
-						<span>INFO</span>
+						<span>{ active ? 'VISIBLE' : 'OCULTO' }</span>
 					</div>
 					<div className="shop-fav shop-content-block">
 						<div className="shop-content-title">

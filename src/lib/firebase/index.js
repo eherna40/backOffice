@@ -57,8 +57,32 @@ export const verifyPermission = async( uid ) => {
     return docRef
 }
 
-export const shopCreate = (values) => {
-    console.log(values)
+export const shopCreate = async(place) => {
+        let res = false
+        const timestamp = firebase.firestore.FieldValue.serverTimestamp()
+        console.log(place.place_id)
+        const ref = await database.collection("LOCALS").doc(place.place_id)
+        const exist = ref.get().then(res => res.exist)
+        if(exist){
+            await ref.set({
+            ...place,
+            errollment: timestamp,
+            modify: timestamp
+         })
+            .then( (docRef) =>  {
+                res = true
+            })
+            .catch(function (error) {
+                res= false
+                 console.error("Error adding document: ", error);
+            });
+
+        }
+       
+           return res
+
+
+
 }
 
 export const shopModify = (values) => {
@@ -66,13 +90,13 @@ export const shopModify = (values) => {
 }
 
 export const shopGetAll = async () => {
-    const shops = await database.collection("locals")
+    const shops = await database.collection("LOCALS")
         .get()
         .then(snap => snap)
         .catch(function (error) {
             console.log("Error getting documents: ", error);
         });
-
+console.log(shops)
     return shops
 }
 
@@ -119,10 +143,9 @@ export const userBlock = () => {
 }
 
 export const getPlaceById = async (placeId) => {
-    console.log(placeId)
-    const place = await fetch(`https://maps.googleapis.com/maps/api/place/details/json?placeid=${placeId}&key=AIzaSyAywy0bnd4SnrC87Yx01_wD5yOBbOqoZPU`)
+    const place = await fetch(`https://maps.googleapis.com/maps/api/place/details/json?placeid=${placeId}&key=${KEY_GOOGLE_MAPS}`)
         .then(res => res.json())
-        .then(res => console.log(res))
+        .then(res => res )
     return place
 }
 
@@ -215,25 +238,7 @@ class DB {
     }
     addLocal = (data) => {
 
-        const local = data
-        delete local.predictions
-
-        const timestamp = firebase.firestore.FieldValue.serverTimestamp()
-        const ref = database.collection("locals")
-        ref.add({
-            ...local,
-            errollment: timestamp,
-            modify: timestamp
-        })
-            .then(function (docRef) {
-                console.log("Document written with ID: ", docRef.id);
-            })
-            .catch(function (error) {
-                console.error("Error adding document: ", error);
-            });
-
-
-
+        
     }
 
     async getLocal(id) {

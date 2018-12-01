@@ -32,7 +32,7 @@ export class Layout extends Component {
 							<PrivateRoutes isLogged={this.props.isLogged} />
 						</Switch>
 						{/* <Route path='/users/new' component={AddUser} /> */}
-						<Route path='/shop/new' component={AddShop} />
+						
 					</div>
 
 				</div>

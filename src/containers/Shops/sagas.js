@@ -1,8 +1,23 @@
 import { put, takeLatest, call, takeEvery} from 'redux-saga/effects';
-import { FETCH_GET_SHOPS, GET_AUTOCOMPLETE, GET_PLACE_BY_ID } from './constants';
-import { shopGetAll, getPredictions, getPlaceById } from '../../lib/firebase';
+import { FETCH_GET_SHOPS, GET_AUTOCOMPLETE, GET_PLACE_BY_ID, FETCH_ADD_SHOP } from './constants';
+import { shopGetAll, getPredictions, getPlaceById, shopCreate } from '../../lib/firebase';
 import { actionGetShopsSuccess, actionGetAutoCompleteSuccess } from './actions';
+import { history } from '../../store';
 
+
+function* fetchAddShop ({ place }) {
+    try {
+        console.log(place)
+    const saveShop = yield call(shopCreate, place)
+    if(saveShop){
+        yield call(workerGetShop)
+        history.push('/shops')
+    }
+    } catch (error) {
+        console.log(error)
+    }
+    
+}
 
 function* fetchGetAutoComplete ({value, token}) {
 try {
@@ -24,7 +39,7 @@ function* fetchGetPlaceById ({id}){
         
     }
 }
-function* workerGetUsersSaga() {
+function* workerGetShop() {
 
     try {
         let shops = []
@@ -32,7 +47,7 @@ function* workerGetUsersSaga() {
         if(res.empty === false){
             res.forEach(function(doc) {
                 const id = doc.id
-                shops = [{ ...shops, id, ...doc.data() }]
+                shops = [...shops, {id, ...doc.data()} ]
             });
         }
         yield put(actionGetShopsSuccess(shops))
@@ -43,7 +58,8 @@ function* workerGetUsersSaga() {
 }
 
 export default function* watchGetShopSaga() {
-  yield takeEvery(FETCH_GET_SHOPS, workerGetUsersSaga);
+  yield takeEvery(FETCH_GET_SHOPS, workerGetShop);
   yield takeEvery(GET_AUTOCOMPLETE, fetchGetAutoComplete)
   yield takeEvery(GET_PLACE_BY_ID, fetchGetPlaceById)
+  yield takeEvery(FETCH_ADD_SHOP, fetchAddShop)
 }

@@ -1,0 +1,23 @@
+.autocomplete{
+    position: absolute;
+    top: 57px;
+    padding: 0px 0px;
+    background: white;
+    width: 100%;
+    box-shadow: 0px 2px 6px rgba(0,0,0,.1)
+}
+
+.autocomplete-prediction{
+    color:gray;
+    font-size: 12px;    
+    padding: 10px 10px;
+    cursor: pointer;
+}
+
+
+.autocomplete-prediction:hover{
+    background:#f6f6f6;
+}
+.auctocomplete-prediction-address{
+    font-size: 10px;
+}
