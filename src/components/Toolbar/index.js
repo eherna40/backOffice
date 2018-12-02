@@ -8,7 +8,10 @@ function Toolbar(props) {
       <div className="toolbar-container">
         <div className="tootlbar-name-add">
           <div className="toolbar-title">{props.title}</div>
-          <Link to="/shops/add" className="navigation-add">NUEVO</Link>
+          {
+            props.link &&
+            <Link to={props.link} className="navigation-add">NUEVO</Link>
+          }
         </div>
       </div>
     </div>

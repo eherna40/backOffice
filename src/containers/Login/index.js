@@ -32,7 +32,6 @@ export class Login extends Component {
         })
     }
   render() {
-      console.log(this.props)
     return (
       <div className="login">
         <div className="container">
@@ -57,7 +56,6 @@ const mapStateToProps = state => ({
   
   const mapDispatchToProps = dispatch => ({
     setLogin: (values) => dispatch(actionFetchLogin(values)),
-
   });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)

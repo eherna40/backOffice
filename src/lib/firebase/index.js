@@ -96,14 +96,85 @@ export const shopGetAll = async () => {
         .catch(function (error) {
             console.log("Error getting documents: ", error);
         });
-    console.log(shops)
     return shops
+}
+
+
+export const catGetAll = async () => {
+    const cat = await database.collection("CATEGORIES")
+        .get()
+        .then(snap => snap)
+        .catch(function (error) {
+            console.log("Error getting documents: ", error);
+        });
+    return cat
 }
 
 export const shopGetOnly = () => {
 
 }
+export const pagesGetAll = async () => {
+    const pages = await database.collection("PAGES")
+        .get()
+        .then(snap => snap)
+        .catch(function (error) {
+            console.log("Error getting documents: ", error);
+        });
+    return pages
+}
 
+export const pagesSet = async (values) => {
+    const { id, content } = values
+    const page = await database.collection("PAGES").doc(id);
+
+    // Set the "capital" field of the city 'DC'
+    return page.update({
+        content: content
+    })
+        .then(function () {
+            console.log("Document successfully updated!");
+        })
+        .catch(function (error) {
+            // The document probably doesn't exist.
+            console.error("Error updating document: ", error);
+        });
+}
+
+export const promosGetAll = async () => {
+    const promos = await database.collection("PROMOS")
+        .get()
+        .then(snap => snap)
+        .catch(function (error) {
+            console.log("Error getting documents: ", error);
+        });
+    return promos
+}
+
+
+export const promosCreate = async (promo) => {
+    // Add a new document with a generated id.
+    const timestamp = firebase.firestore.FieldValue.serverTimestamp()
+    const { active, title, local, category, price } = promo
+    const res = await database.collection("PROMOS").add({
+        active,
+        title,
+        price,
+        idLocal: local,
+        category,
+        createAt: timestamp,
+        modify: timestamp
+    })
+        .then(function (docRef) {
+            return true
+        })
+        .catch(function (error) {
+            console.error("Error adding document: ", error);
+            return false
+        });
+
+    return res
+
+}
 export const shopDelete = () => {
 
 }
@@ -144,7 +215,7 @@ export const userGetAll = async () => {
 }
 
 export const userGetOnly = async (id) => {
-console.log(id, 'asds')
+    console.log(id, 'asds')
     let user = await database.collection("USERS").doc(id)
         .get()
         .then(snap => snap.data())
@@ -155,12 +226,12 @@ console.log(id, 'asds')
     const favs = await database.collection("FAVS").where("idUser", "==", id)
         .get()
         .then((snap) => {
-            if(snap.empty){
+            if (snap.empty) {
                 return []
-            }else{
+            } else {
                 return snap
             }
-            
+
         })
         .catch(function (error) {
             console.log("Error getting documents: ", error);
@@ -171,28 +242,47 @@ console.log(id, 'asds')
     return user
 }
 
-export const userDelete = async(id) => {
-    
+export const userDelete = async (id) => {
+
 }
 
-export const userBlock = async(values) => {
+export const userBlock = async (values) => {
     console.log(values)
-const { id, active } = values
+    const { id, active } = values
     const block = await database.collection("USERS").doc(id)
-    .update({
-        active: active
-    })
-    .then(function() {
-        return true
-    })
-    .catch(function(error) {
-        
-        console.error("Error updating document: ", error);
-        return false
-    })
+        .update({
+            active: active
+        })
+        .then(function () {
+            return true
+        })
+        .catch(function (error) {
+
+            console.error("Error updating document: ", error);
+            return false
+        })
 
 
-return block
+    return block
+}
+
+export const promoBlock = async(values) => {
+    const { id, active } = values
+    const block = await database.collection("PROMOS").doc(id)
+        .update({
+            active: !active
+        })
+        .then(function () {
+            return true
+        })
+        .catch(function (error) {
+
+            console.error("Error updating document: ", error);
+            return false
+        })
+
+        return block
+
 }
 
 export const getPlaceById = async (placeId) => {

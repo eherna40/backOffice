@@ -12,6 +12,8 @@ export class Navigation extends Component {
                         <NavLink to="/shops" className="navigation-link" activeClassName="selected">TIENDAS</NavLink>
                         <NavLink to="/users" className="navigation-link" activeClassName="selected">USUARIOS</NavLink>
                         <NavLink to="/pages" className="navigation-link" activeClassName="selected">PAGINAS</NavLink>
+                        <NavLink to="/promos" className="navigation-link" activeClassName="selected">PROMOS</NavLink>
+
                     </ul>
                 </div>
             </div>

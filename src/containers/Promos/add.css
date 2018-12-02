@@ -1,0 +1,22 @@
+.promo-add{
+    position: fixed;
+    background: rgba(0,0,0,.6);
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.promo-add-container{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 60px;
+}
+
+
+.form-promo-container{
+    padding: 20px;
+}

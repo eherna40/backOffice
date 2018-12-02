@@ -11,3 +11,11 @@
     padding: 20px;
     background: white;
 }
+
+.pages-wrapper{
+    display: flex;
+}
+
+.pages-content{
+    width: 70%;
+}

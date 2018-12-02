@@ -1,15 +1,21 @@
 import React, { Component } from 'react';
 import { ConnectedRouter } from 'connected-react-router';
 import { Route, Switch } from 'react-router-dom'
-import { history } from './store';
-import './App.css'
-import PrivateRoutes from './routes/PrivateRoutes'
-import Login from './containers/Login';
+import { history } from '../store';
+import '../App.css'
+import PrivateRoutes from '../routes/PrivateRoutes'
+import Login from '../containers/Login';
 import { connect } from 'react-redux'
-import Header from './containers/Header'
-import Navigation from './containers/Navigation'
+import Header from '../containers/Header'
+import Navigation from '../containers/Navigation'
 
 export class Layout extends Component {
+
+	componentDidMount = () => {
+		if(this.props.isLogged === false){
+		history.replace('/')
+		}
+	}
 	render() {
 		return (
 			<ConnectedRouter history={history}>

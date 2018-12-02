@@ -1,0 +1,45 @@
+.filter{
+    padding: 0 20px;
+    color: grey;
+}
+
+.filter-container{
+    background: white;
+}
+
+.filter-title{
+    border-bottom: 1px solid #eee;
+    padding: 20px 10px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.filter-item{
+    padding: 10px 10px;
+}
+
+.filter-item-label{
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.filter-item-input-text{
+    width: 100%;
+}
+.filter-item-input-text input{
+    width: 100%;
+    border: 0;
+    background:#eee ;
+    font-size: 16px;
+    padding: 5px;
+    border-radius: 3px;
+
+}
+.filter-item-input-text input:focus{
+  outline: none;
+}
+
+.select-material-ui{
+    width: 100%;
+}

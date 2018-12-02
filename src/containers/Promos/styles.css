@@ -1,0 +1,14 @@
+.promos-filter{
+    width: 30%;
+}
+
+.promos-list{
+    width: 100%;
+    position: relative;
+}
+
+.promos-wrapper{
+    display: flex;
+}
+
+

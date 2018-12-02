@@ -1,0 +1,21 @@
+.page-lit{
+    width: 30%;
+    padding: 0 20px;
+}
+
+.page-list-container{
+    background: white;
+    color: gray; 
+    font-size: 14px;
+    text-transform: uppercase;
+}
+.page-list-page{
+    padding: 20px;
+    cursor: pointer;
+    transition: .2s linear all;
+}
+
+.page-list-page:hover{
+    background: #eee;
+    font-weight: 900;
+}

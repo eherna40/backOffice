@@ -1,0 +1,34 @@
+.page-content{
+    padding: 0 20px;
+}
+
+.page-content-container{
+    background: white;
+    padding: 20px;
+}
+
+.page-content-label{
+    font-size: 16px;
+    color: #ccc;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.page-content-title{
+    margin-bottom: 20px;
+}
+
+.page-content textarea{
+    width: 100%;
+    min-height: 300px;
+    border: 1px solid #eee;
+    padding: 10px;
+    font-size: 18px;
+    color: #101010;
+}
+
+.page-content textarea:focus{
+    outline: none;
+    border: 1px solid lightblue;
+}

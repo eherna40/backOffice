@@ -13,7 +13,6 @@ function* fetchLogin({ values }) {
 			const permission = yield call(verifyPermission, uid)
 			if (permission) {
 				yield put (actionLoginSuccess(user))
-				history.push('/shops')
 			}
 		}
 
