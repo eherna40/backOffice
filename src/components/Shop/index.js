@@ -6,34 +6,24 @@ import { secToDate } from '../../lib/date';
 export default function Shop(props) {
 
 	const { 
-		administrative_area_level_1, 
-		administrative_area_level_2, 
 		country, 
 		errollment,
-		formatted_address,
-		formatted_phone_number,
-		id,
-		international_phone_number,
 		locality,
-		location,
-		modify,
 		name,
-		password,
-		place_id,
-		postal_code,
 		route,
 		street_number,
-		url,
-		user,
 		active,
+		icon,
+		handleClick
 
 	} = props
-	console.log(active)
+	console.log(errollment)
 	return (
 		<div className="shop">
 			<div className="shop-content">
 				<div className="shop-name">
-					<div className="shop-name-title">{ name }</div>
+					<div className="shop-name-title">
+					<img src={icon} width='20' alt=''/>{ name }</div>
 				</div>
 				<div className="shop-info-content">
 					<div className="shop-title-info">
@@ -63,7 +53,7 @@ export default function Shop(props) {
 						</div>
 					</div>
 					<div className="shop-button-editar shop-content-block">
-						<BtnNeutral title="EDITAR" />
+						<BtnNeutral handleClick={() => handleClick(props)} title="EDITAR" />
 					</div>
 				</div>
 			</div>

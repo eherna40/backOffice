@@ -4,26 +4,48 @@ import { connect } from 'react-redux'
 import Shop from '../../components/Shop';
 import { actionFetchGetShops } from './actions';
 import Toolbar from '../../components/Toolbar';
+import Loading from '../../components/Loading';
+import Profile from '../../components/Shop/Profile'
 
 export class Shops extends Component {
-
+	state = {
+		selected: null
+	}
 	componentDidMount = () => {
 		this.props.fetchGetShops()
 	}
+
+	handleClickSelected = (item) => {
+		console.log(item)
+		this.setState({
+			selected: item
+		})
+	}
 	render() {
-		const { data } = this.props.shops
-		console.log(data, 'as')
+		const { data, sync } = this.props.shops
+		console.log(this.state.selected)
 		return (
 			<div className="shops">
 				<div className="shops-container">
-				<Toolbar  />
 					<div className="shops-list">
-						{
-							data.length > 0 && data.map(item => {
-								return <Shop key={item.id} {...item} />
 
-							})
+						{
+							sync
+							&&
+							<Loading />
 						}
+						<div className="shops-list-container">
+						<Toolbar title="TIENDAS" />
+							{
+								data.length > 0 && data.map(item => {
+									return <Shop key={item.id} {...item} handleClick={this.handleClickSelected} />
+
+								})
+							}
+						</div>
+						{
+								this.state.selected !== null && <Profile item={this.state.selected} />
+							}
 					</div>
 				</div>
 			</div>

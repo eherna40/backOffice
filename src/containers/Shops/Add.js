@@ -9,7 +9,7 @@ import './styles.css'
 import AutoComplete from '../../components/AutoComplete';
 import { getPlaceById } from '../../lib/firebase';
 import BtnNeutral from '../../components/Buttons/btn-neutral';
-import { history } from '../../store';
+import Loading from '../../components/Loading';
 
 export class Add extends Component {
     state = {
@@ -49,8 +49,8 @@ export class Add extends Component {
             .catch(function (error) {
                 console.log(error)
                 // Handle Errors here.
-                var errorCode = error.code;
-                var errorMessage = error.message;
+                // var errorCode = error.code;
+                // var errorMessage = error.message;
                 // ...
             });
 
@@ -81,7 +81,7 @@ export class Add extends Component {
 
     }
 
-    handleClickSubmit  = () => {
+    handleClickSubmit = () => {
         const place = {
             user: this.state.user,
             password: this.state.password,
@@ -113,6 +113,7 @@ export class Add extends Component {
             if (i.id === 'autocomplete') {
                 result = true
             }
+            return true
         })
         if (!result) {
             this.handleBlurCloseAutoComplete()
@@ -146,10 +147,10 @@ export class Add extends Component {
 
 
         address_components.map(item => {
-            console.log(item.types)
             this.setState({
                 [item.types[0]]: item.long_name
             })
+            return true
         })
         this.setState({
             autocomplete: false,
@@ -165,18 +166,22 @@ export class Add extends Component {
 
     }
 
-    handleChangeChecked = () => { this.setState({active: !this.state.active})}
+    handleChangeChecked = () => { this.setState({ active: !this.state.active }) }
 
     handleChangeInput = (el) => {
         this.setState({
             [el.target.name]: el.target.value
         })
-    } 
+    }
 
     render() {
         const { predictions } = this.props
         return (
             <div className="add-shop">
+                {
+                    this.props.sync && <Loading />
+
+                }
                 <div className="add-shop-container">
                     <form ref={node => this.form = node} className="add-shop-form">
                         <div className="add-shop-form-close">k</div>
@@ -184,9 +189,9 @@ export class Add extends Component {
                             Nueva tienda
                         </div>
                         <div className="input-content-active">
-                                    <div className="visible-text">{this.state.active ? 'Visible' : 'Oculto'}</div>
-                                    <Switch checked={this.state.active} onChange={this.handleChangeChecked} />
-                                </div>
+                            <div className="visible-text">{this.state.active ? 'Visible' : 'Oculto'}</div>
+                            <Switch checked={this.state.active} onChange={this.handleChangeChecked} />
+                        </div>
                         <div className="add-shop-form-container">
                             <div className="add-shop-input-container">
                                 <div id="autocomplete" className="input-content-name">
@@ -197,28 +202,28 @@ export class Add extends Component {
                                     }
                                 </div>
                                 <div className="input-content-street">
-                                    <Input name='route' handleChange={this.handleChangeInput} value={this.state.route} value={this.state.route} label="Calle" />
+                                    <Input name='route' handleChange={this.handleChangeInput} value={this.state.route}  label="Calle" />
                                 </div>
                                 <div className="input-content-street_number">
                                     <Input name='street_number' handleChange={this.handleChangeInput} value={this.state.street_number} label="Numero" />
                                 </div>
                                 <div className="input-content-cp">
-                                    <Input  name='postal_code' handleChange={this.handleChangeInput} value={this.state.postal_code} label="CP" />
+                                    <Input name='postal_code' handleChange={this.handleChangeInput} value={this.state.postal_code} label="CP" />
                                 </div>
                                 <div className="input-content-state">
-                                    <Input name='administrative_area_level_1' handleChange={this.handleChangeInput}  value={this.state.administrative_area_level_1} label="Poblacion" />
+                                    <Input name='administrative_area_level_1' handleChange={this.handleChangeInput} value={this.state.administrative_area_level_1} label="Poblacion" />
                                 </div>
                                 <div className="input-content-city">
-                                    <Input name='locality' handleChange={this.handleChangeInput}  value={this.state.locality} label="Provincia" />
+                                    <Input name='locality' handleChange={this.handleChangeInput} value={this.state.locality} label="Provincia" />
                                 </div>
                                 <div className="input-content-country">
-                                    <Input  name='country' handleChange={this.handleChangeInput} value={this.state.country} label="País" />
+                                    <Input name='country' handleChange={this.handleChangeInput} value={this.state.country} label="País" />
                                 </div>
                                 <div className="input-content-phone">
-                                    <Input name='formatted_phone_number' handleChange={this.handleChangeInput}  value={this.state.formatted_phone_number} label="Telefono" />
+                                    <Input name='formatted_phone_number' handleChange={this.handleChangeInput} value={this.state.formatted_phone_number} label="Telefono" />
                                 </div>
                                 <div className="input-content-email">
-                                    <Input name='email' handleChange={this.handleChangeInput}  value={this.state.email} label="Email" />
+                                    <Input name='email' handleChange={this.handleChangeInput} value={this.state.email} label="Email" />
                                 </div>
 
                             </div>
@@ -227,13 +232,13 @@ export class Add extends Component {
 
                                     <div className="account-shop-title">Crear cuenta</div>
                                     <Input name="user" handleChange={this.handleChangeInput} value={this.state.user} label='User' />
-                                    <Input name="password" handleChange={this.handleChangeInput}  value={this.state.password} label='Contraseña' />
+                                    <Input name="password" handleChange={this.handleChangeInput} value={this.state.password} label='Contraseña' />
 
                                 </div>
                             </div>
                             <div className="btn-submit">
-                            
-                            <BtnNeutral title="GUARDAR" handleClick = {this.handleClickSubmit} />
+
+                                <BtnNeutral title="GUARDAR" handleClick={this.handleClickSubmit} />
                             </div>
                         </div>
 
@@ -245,7 +250,8 @@ export class Add extends Component {
 }
 
 const mapStateToProps = state => ({
-    predictions: state.shopReducer.predictions
+    predictions: state.shopReducer.predictions,
+    sync: state.shopReducer.sync
 });
 
 const mapDispatchToProps = dispatch => ({

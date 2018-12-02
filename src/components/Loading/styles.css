@@ -1,0 +1,35 @@
+.loading-img img{
+    width: 50px;
+    animation-name: rotate;
+    animation-iteration-count: infinite;
+    animation-duration:1s;
+animation-timing-function: ease-in-out;
+}
+
+.loading{
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+align-items: center;
+justify-content: center;
+height: 100%;
+width: 100%;
+
+}
+
+@keyframes rotate {
+    0%{
+transform: rotate(0)
+    }
+    20%{
+        transform: rotate(0)
+            }
+    80%{
+        transform: rotate(360deg)
+    }
+    100%{
+        transform: rotate(360deg)
+
+    }
+}

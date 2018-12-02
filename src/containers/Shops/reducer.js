@@ -1,23 +1,20 @@
-import { GET_SHOPS_SUCCESS, FETCH_GET_SHOPS, GET_AUTOCOMPLETE_SUCCESS, ADD_SHOP_SUCCESS } from "./constants";
+import { GET_SHOPS_SUCCESS, FETCH_GET_SHOPS, GET_AUTOCOMPLETE_SUCCESS, ADD_SHOP_SUCCESS, FETCH_ADD_SHOP } from "./constants";
 
 const initialState = {
   data: [],
   sync: false,
   error: false,
   predictions: [],
-  
 };
 
 export default function shopReducer(state = initialState, action) {
   switch (action.type) {
     case FETCH_GET_SHOPS:
-
       return {
         ...state,
         sync: true
       };
     case GET_SHOPS_SUCCESS:
-console.log(action)
       return {
         ...state,
         data: action.shops,
@@ -26,7 +23,6 @@ console.log(action)
       };
     case GET_AUTOCOMPLETE_SUCCESS:
       const { predictions } = action
-      console.log(predictions)
       return {
         ...state,
         predictions
@@ -35,6 +31,12 @@ console.log(action)
       return {
         ...state,
         sync: false,
+        error: false
+      };
+      case FETCH_ADD_SHOP:
+      return {
+        ...state,
+        sync: true,
         error: false
       };
     default:

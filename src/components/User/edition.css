@@ -1,0 +1,33 @@
+.edition{
+background: white;
+padding: 10px 20px;
+color: grey;
+}
+
+
+
+.edition-input{
+    width: 50%;
+}
+
+.edition-container{
+    display: flex;
+}
+
+.edition-content{
+    width: 80%;
+}
+
+.edition-button{
+    width: 20%;
+}
+
+
+.edition-data{
+    font-size: 8px;
+    padding: 0 10px;
+}
+
+.edition-label{
+    font-weight: 900;
+}

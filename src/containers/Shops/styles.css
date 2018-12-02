@@ -2,7 +2,6 @@
     padding: 0 20px;
 }
 
-
 .add-shop{
     position: fixed;
     background: rgba(0,0,0,.8);
@@ -13,6 +12,9 @@
     z-index: 2;
 }
 
+.view-shop{
+    padding: 0 20px;
+}
 .add-shop-container{
     display: flex; 
     align-items: center;

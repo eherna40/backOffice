@@ -1,5 +1,5 @@
 .toolbar-container{
-    margin: 30px 0px;
+    margin: 10px 0px;
 }
 
 .toolbar-title{
@@ -12,6 +12,7 @@
 .tootlbar-name-add{
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
 }
 
 .navigation-add{

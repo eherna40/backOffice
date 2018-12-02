@@ -3,7 +3,6 @@ import { ConnectedRouter } from 'connected-react-router';
 import { Route, Switch } from 'react-router-dom'
 import { history } from './store';
 import './App.css'
-import AddShop from './containers/Shops/Add'
 import PrivateRoutes from './routes/PrivateRoutes'
 import Login from './containers/Login';
 import { connect } from 'react-redux'

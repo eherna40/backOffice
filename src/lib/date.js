@@ -1,4 +1,3 @@
-import moment from 'moment'
 
 export const secToDate = (seconds)=> {
     const day = new Date(seconds*1000).getDate();

@@ -25,13 +25,7 @@ export default function loginReducer(state = initialState, action) {
         error: false,
         isLogged: true
       };
-      case FETCH_LOGIN:
-      return {
-        ...state,
-        sync: false,
-        error: true,
-        isLogged: false
-      };
+      
       case LOGOUT:
       return {
         ...state,

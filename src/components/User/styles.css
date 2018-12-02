@@ -1,0 +1,82 @@
+
+.user{
+    margin-bottom: 10px;
+}
+
+.user-info{
+    background: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: inline-flex;
+    width: 100%;
+    align-items: center;
+    color: grey;
+    font-size: 14px;
+    cursor: pointer;
+    
+}
+.user-info:hover{
+    box-shadow: 0px 0px 10px rgba(0,0,0,.1);
+}
+.user-item-one{
+    width: 10%;
+
+}
+.user-item-two{
+    width: 30%;
+}
+.user-item-three{
+    width: 10%;
+}
+.user-item-four{
+    width: 20%;
+}
+.user-item-five{
+    width: 10%;
+}
+.user-item-six{
+    width: 10%;
+}
+.user-avatar{
+    height: 50px;
+}
+.user-avatar-image{
+    background: lightgray;
+    border-radius: 50%;
+    height: 45px;
+    width: 45px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+.user-avatar-image img{
+    position: absolute;
+}
+
+
+.user-email{
+    font-size: 12px;
+    font-style: italic;
+    width: 30%;
+}
+.user-btn-edit{
+    background: red;
+}
+
+.user-item{
+    margin-right: 20px;
+}
+
+.editing-view{
+    height: 0;
+    overflow: hidden;
+    transition: .2s linear ease-in-out;
+}
+
+.editing-view.active{
+    height: 130px;
+}

@@ -9,7 +9,6 @@ import storage from 'redux-persist/lib/storage' // defaults to localStorage for 
 
 import rootReducer from './reducers';
 import sagas from './sagas';
-import shopReducer from './containers/Shops/reducer';
 
 
 const persistConfig = {

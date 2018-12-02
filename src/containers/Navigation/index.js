@@ -10,6 +10,8 @@ export class Navigation extends Component {
                     <ul className='ul-format'>
                         <NavLink to="/dashboard" className="navigation-link" activeClassName="selected">DASHBOARD</NavLink>
                         <NavLink to="/shops" className="navigation-link" activeClassName="selected">TIENDAS</NavLink>
+                        <NavLink to="/users" className="navigation-link" activeClassName="selected">USUARIOS</NavLink>
+                        <NavLink to="/pages" className="navigation-link" activeClassName="selected">PAGINAS</NavLink>
                     </ul>
                 </div>
             </div>

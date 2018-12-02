@@ -1,4 +1,4 @@
-import { put, takeLatest, call, takeEvery} from 'redux-saga/effects';
+import { put, call, takeEvery} from 'redux-saga/effects';
 import { FETCH_GET_SHOPS, GET_AUTOCOMPLETE, GET_PLACE_BY_ID, FETCH_ADD_SHOP } from './constants';
 import { shopGetAll, getPredictions, getPlaceById, shopCreate } from '../../lib/firebase';
 import { actionGetShopsSuccess, actionGetAutoCompleteSuccess } from './actions';
@@ -7,7 +7,6 @@ import { history } from '../../store';
 
 function* fetchAddShop ({ place }) {
     try {
-        console.log(place)
     const saveShop = yield call(shopCreate, place)
     if(saveShop){
         yield call(workerGetShop)

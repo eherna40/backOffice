@@ -1,6 +1,5 @@
 import React from 'react'
 import './styles.css'
-import { Item } from 'semantic-ui-react';
 
 function AutoComplete(props) {
     const { predictions, visible, handleSelectClick } = props
