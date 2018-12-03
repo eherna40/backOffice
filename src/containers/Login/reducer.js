@@ -1,5 +1,4 @@
-import { FETCH_LOGIN, LOGIN_SUCCES, LOGOUT } from "./constants";
-
+import { FETCH_LOGIN, LOGIN_SUCCES, LOGOUT, LOGIN_FAILED } from "./constants";
 const initialState = { 
   user: {},
   sync: false,
@@ -17,7 +16,6 @@ export default function loginReducer(state = initialState, action) {
       };
       case LOGIN_SUCCES:
       const { user } = action
-
       return {
         ...state,
         user,
@@ -25,7 +23,13 @@ export default function loginReducer(state = initialState, action) {
         error: false,
         isLogged: true
       };
-      
+      case LOGIN_FAILED:
+      return {
+        ...state,
+        sync: false,
+        error: true,
+        isLogged: false
+      };
       case LOGOUT:
       return {
         ...state,

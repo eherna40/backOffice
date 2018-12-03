@@ -9,7 +9,7 @@ function* getPromos() {
 	try {
 		const res = yield call(promosGetAll)
 		if (res.empty) {
-
+			yield put(actionGetPromosSuccess(promos))
 		} else {
 		
 			res.forEach(function(doc) {

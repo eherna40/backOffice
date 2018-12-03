@@ -10,6 +10,8 @@ import AutoComplete from '../../components/AutoComplete';
 import { getPlaceById } from '../../lib/firebase';
 import BtnNeutral from '../../components/Buttons/btn-neutral';
 import Loading from '../../components/Loading';
+import FormAddShop from '../../components/Forms/FormAddShop';
+import Close from '../../components/Forms/Close';
 
 export class Add extends Component {
     state = {
@@ -174,6 +176,10 @@ export class Add extends Component {
         })
     }
 
+    handleClickClose = () => {
+        this.props.history.goBack()
+    }
+
     render() {
         const { predictions } = this.props
         return (
@@ -184,9 +190,9 @@ export class Add extends Component {
                 }
                 <div className="add-shop-container">
                     <form ref={node => this.form = node} className="add-shop-form">
-                        <div className="add-shop-form-close">k</div>
                         <div className="add-shop-form-title">
                             Nueva tienda
+                            <Close handleClick={this.handleClickClose} />
                         </div>
                         <div className="input-content-active">
                             <div className="visible-text">{this.state.active ? 'Visible' : 'Oculto'}</div>
@@ -202,7 +208,7 @@ export class Add extends Component {
                                     }
                                 </div>
                                 <div className="input-content-street">
-                                    <Input name='route' handleChange={this.handleChangeInput} value={this.state.route}  label="Calle" />
+                                    <Input name='route' handleChange={this.handleChangeInput} value={this.state.route} label="Calle" />
                                 </div>
                                 <div className="input-content-street_number">
                                     <Input name='street_number' handleChange={this.handleChangeInput} value={this.state.street_number} label="Numero" />
@@ -236,12 +242,11 @@ export class Add extends Component {
 
                                 </div>
                             </div>
-                            <div className="btn-submit">
 
-                                <BtnNeutral title="GUARDAR" handleClick={this.handleClickSubmit} />
-                            </div>
                         </div>
-
+                        <div className="btn-submit">
+                            <BtnNeutral title="GUARDAR" handleClick={this.handleClickSubmit} />
+                        </div>
                     </form>
                 </div>
             </div>

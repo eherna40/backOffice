@@ -1,7 +1,7 @@
 import { put, call, takeEvery} from 'redux-saga/effects';
-import { FETCH_GET_SHOPS, GET_AUTOCOMPLETE, GET_PLACE_BY_ID, FETCH_ADD_SHOP } from './constants';
-import { shopGetAll, getPredictions, getPlaceById, shopCreate } from '../../lib/firebase';
-import { actionGetShopsSuccess, actionGetAutoCompleteSuccess } from './actions';
+import { FETCH_GET_SHOPS, GET_AUTOCOMPLETE, GET_PLACE_BY_ID, FETCH_ADD_SHOP, BLOCK_SHOP } from './constants';
+import { shopGetAll, getPredictions, getPlaceById, shopCreate, shopBlock } from '../../lib/firebase';
+import { actionGetShopsSuccess, actionGetAutoCompleteSuccess, actionBlockShop } from './actions';
 import { history } from '../../store';
 
 
@@ -56,9 +56,21 @@ function* workerGetShop() {
     }
 }
 
+function* blockShop({values}){
+    try {
+		const res = yield call (shopBlock,values )
+		if(!res){
+			yield put(actionBlockShop(values))
+		}
+	} catch (error) {
+		
+	}
+}
+
 export default function* watchGetShopSaga() {
   yield takeEvery(FETCH_GET_SHOPS, workerGetShop);
   yield takeEvery(GET_AUTOCOMPLETE, fetchGetAutoComplete)
   yield takeEvery(GET_PLACE_BY_ID, fetchGetPlaceById)
   yield takeEvery(FETCH_ADD_SHOP, fetchAddShop)
+  yield takeEvery(BLOCK_SHOP, blockShop)
 }

@@ -1,4 +1,4 @@
-import { FETCH_GET_SHOPS, GET_SHOPS_SUCCESS, GET_SHOPS_FAILED, GET_AUTOCOMPLETE, GET_AUTOCOMPLETE_SUCCESS, GET_PLACE_BY_ID, GET_PLACE_BY_ID_SUCCESS, FETCH_ADD_SHOP, ADD_SHOP_SUCCESS } from './constants';
+import { FETCH_GET_SHOPS, GET_SHOPS_SUCCESS, GET_SHOPS_FAILED, GET_AUTOCOMPLETE, GET_AUTOCOMPLETE_SUCCESS, GET_PLACE_BY_ID, GET_PLACE_BY_ID_SUCCESS, FETCH_ADD_SHOP, ADD_SHOP_SUCCESS, BLOCK_SHOP, BLOCK_SHOP_FAILED } from './constants';
 
 export function actionFetchGetShops() {
   return {
@@ -56,5 +56,17 @@ export function actionFetchAddShop(place) {
 export function actionAddShopSuccess() {
   return {
     type: ADD_SHOP_SUCCESS
+  };
+}
+export function actionBlockShop(values) {
+  return {
+    type: BLOCK_SHOP,
+    values
+  };
+}
+export function actionBlockShopFailed(values) {
+  return {
+    type: BLOCK_SHOP_FAILED,
+    values
   };
 }

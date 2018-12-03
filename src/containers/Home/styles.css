@@ -1,22 +1,36 @@
-.Home{
-  padding: 30px;
+.item{
+  width: 20%;
+  padding: 0 10px;
+  margin: 10px 0;
 }
 
-.Home .Usercounter{
-  color:gray;
+
+.dashboard-items{
+  display: flex;
+  min-height: 400px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
-.Home .Usercounter .Usercounter-title{
-  font-size: 12px;
-}
-
-.Home .Usercounter .Usercounter-total{
-  font-size: 50px;
+.item-content{
+  display: flex;
+  align-items: center; 
+  flex-direction: column;
+  justify-content: center;
+  background: lightblue;
+  border-radius: 4px;
+  color: white;
+  text-transform: uppercase;
   font-weight: bold;
-  color: #101010;
+  height: 100px;
+  box-shadow: 0px 0px 6px rgba(0,0,0,.1);
+  text-decoration: none;
+  transition: .3s linear all;
 }
 
-.Home .Home-widget{
-  padding: 20px;
-  background: white;
+
+.item-content:hover{
+  background: lightgray;
+
 }

@@ -41,7 +41,6 @@ export const signInWithEmailAndPassword = async (values) => {
 
 
 export const verifyPermission = async (uid) => {
-    console.log(uid)
     let docRef = await database.collection("ADMIN").doc(uid)
         .get().then((doc) => {
             if (doc.exists && doc.data().active) {
@@ -178,7 +177,23 @@ export const promosCreate = async (promo) => {
 export const shopDelete = () => {
 
 }
-export const shopBlock = () => {
+export const shopBlock = async(values) => {
+    const { id, active } = values
+    const block = await database.collection("LOCALS").doc(id)
+        .update({
+            active: !active
+        })
+        .then(function () {
+            return true
+        })
+        .catch(function (error) {
+
+            console.error("Error updating document: ", error);
+            return false
+        })
+
+
+    return block
 
 }
 export const offertCreate = () => {
@@ -199,6 +214,14 @@ export const offertBlock = () => {
 
 export const userCreate = () => {
 
+}
+
+export const logout = () => {
+    firebase.auth().signOut().then(function() {
+        // Sign-out successful.
+      }).catch(function(error) {
+        // An error happened.
+      });
 }
 
 export const userModify = () => {

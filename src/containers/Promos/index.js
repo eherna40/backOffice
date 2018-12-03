@@ -30,7 +30,7 @@ export class Promos extends Component {
                 <Toolbar link='/promos/add' title="OFERTAS" />
                 <div className="promos-wrapper">
                 <div className="promos-filter">
-                <Filter />
+                {/* <Filter /> */}
                 
                 </div>
                 <div className="promos-list">

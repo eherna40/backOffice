@@ -6,7 +6,18 @@ import BtnNeutral from '../Buttons/btn-neutral';
 
 
 export default function Profile(props) {
-	const { place_id,errollment, formatted_address, name, active, modify, website, formatted_phone_number, user, password } = props.item
+console.log(props,'sads')
+	const { 
+		place_id,errollment, 
+		formatted_address, 
+		name, 
+		active, 
+		modify, 
+		website, 
+		formatted_phone_number, 
+		user, 
+		password 
+	} = props.item
 
 
 	return (

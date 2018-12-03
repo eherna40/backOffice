@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ConnectedRouter } from 'connected-react-router';
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch , Redirect} from 'react-router-dom'
 import { history } from '../store';
 import '../App.css'
 import PrivateRoutes from '../routes/PrivateRoutes'
@@ -14,6 +14,15 @@ export class Layout extends Component {
 	componentDidMount = () => {
 		if(this.props.isLogged === false){
 		history.replace('/')
+		}else{
+			history.push('/dashboard')
+		}
+		
+	}
+	componentDidUpdate = ( ) => {
+		if(this.props.isLogged){
+			history.push('/dashboard')
+
 		}
 	}
 	render() {
@@ -30,14 +39,9 @@ export class Layout extends Component {
 					}
 					<div className="container">
 						<Switch>
-							{
-								!this.props.isLogged &&
-								<Route path="/" exact name="Login" component={Login} />
-							}
-							<PrivateRoutes isLogged={this.props.isLogged} />
+							<Route path="/" exact name="Login" component={Login} />
+							{ this.props.isLogged &&<PrivateRoutes isLogged={this.props.isLogged} />}
 						</Switch>
-						{/* <Route path='/users/new' component={AddUser} /> */}
-						
 					</div>
 
 				</div>

@@ -1,4 +1,5 @@
-import { GET_SHOPS_SUCCESS, FETCH_GET_SHOPS, GET_AUTOCOMPLETE_SUCCESS, ADD_SHOP_SUCCESS, FETCH_ADD_SHOP } from "./constants";
+import { GET_SHOPS_SUCCESS, FETCH_GET_SHOPS, GET_AUTOCOMPLETE_SUCCESS, ADD_SHOP_SUCCESS, FETCH_ADD_SHOP, BLOCK_SHOP_FAILED, BLOCK_SHOP } from "./constants";
+import { BLOCK_PROMO } from "../Promos/constants";
 
 const initialState = {
   data: [],
@@ -39,6 +40,38 @@ export default function shopReducer(state = initialState, action) {
         sync: true,
         error: false
       };
+      case BLOCK_SHOP_FAILED:
+			const tempFailed = state.data.filter(item => {
+				if (item.id === id) {
+					item.active = active
+				}
+				return item
+      })
+      return {
+				...state,
+				data: tempFailed,
+				sync: false,
+				error: true,
+      };
+      
+      case BLOCK_SHOP:
+
+			const { id, active } = action.values
+			const temp = state.data.filter(item => {
+				if (item.id === id) {
+					item.active = !active
+				}
+				return item
+			})
+			return {
+				...state,
+				data: temp,
+				sync: false,
+				error: false,
+			};
+
+
+
     default:
       return state;
   }

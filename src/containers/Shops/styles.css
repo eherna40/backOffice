@@ -24,18 +24,20 @@
 
 .add-shop-form{
     background: white;
-    padding: 30px;
     border-radius: 4px;
-    min-height: 500px;
-    max-width: 500px;
+    width: 600px;
     color:#505050;
 }
 
 
 .add-shop-form-title{
-    font-size: 25px;
+    font-size: 18px;
     font-weight: bold;
     text-transform: uppercase;
+    color: grey;
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+    position: relative;
 }
 
 #autocomplete{
@@ -75,32 +77,60 @@
 .add-shop-input-container{
     display: flex;
     flex-wrap: wrap;
+    width: 60%;
 }
 
 
 .account-shop{
-    margin-top: 30px;
+    padding: 0 10px;
+    width: 40%;
 }
 .account-shop-container{
-    padding: 10px 60px;
+    padding: 10px;
+    border-left: 1px solid lightgray;
 }
 
 .account-shop-title{
-    font-size: 14px;
+    font-size: 12px;
     font-weight: bold;
     text-transform: uppercase;
+    color: grey;
+    position: relative;
 }
 
 .btn-submit{
-    text-align: center;
+    width: 200px;
+    margin: 0 auto;
+    margin-bottom: 25px;
 }
-
+.add-shop-form-container{
+    padding: 0 10px;
+    display: flex;
+}
 .input-content-active{
     width: 100%;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
 }
 
 .visible-text{
     font-size: 12px;
     font-weight: bold;
     text-transform: uppercase;
+}
+
+.shops-filter{
+    width: 30%;
+}
+
+.shops-wrapper{
+    display: flex;
+}
+.shops-list{
+    width: 70%;
+    position: relative;
+    height: calc(100vh - 170px);
+    overflow: scroll;
+    padding: 10px 0;
 }

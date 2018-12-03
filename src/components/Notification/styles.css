@@ -1,0 +1,33 @@
+.notifications{
+    position: absolute;
+    top: -40px;
+    left: 0;
+    height: 40px;
+    width: 100%;
+    background: #e53935;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    animation-name: notifications;
+    animation-duration: 5s;
+    animation-iteration-count: 1;
+    z-index: 2;
+
+}
+
+.notifications-text{
+    font-size: 12px;
+}
+
+@keyframes notifications{
+    0%{
+        top: -40px;
+    }
+    20%{
+        top: 0;
+    }
+    100%{
+        top: 0;
+    }
+}

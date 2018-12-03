@@ -17,7 +17,6 @@ export default function Shop(props) {
 		handleClick
 
 	} = props
-	console.log(errollment)
 	return (
 		<div className="shop">
 			<div className="shop-content">
@@ -60,3 +59,15 @@ export default function Shop(props) {
 		</div>
 	)
 }
+
+
+
+
+
+
+
+
+
+
+
+
