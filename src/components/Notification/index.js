@@ -1,10 +1,10 @@
 import React from 'react'
 import './styles.css'
 
-function Notifications() {
+function Notifications(props) {
   return (
-    <div className="notifications">
-      <div className="notifications-text">Email o Contraseña no validos</div>
+    <div className="notifications" style={{ background: !props.successColor ? '#e53935' : '#00695c'}}>
+      <div className="notifications-text">{props.message}</div>
     </div>
   )
 }

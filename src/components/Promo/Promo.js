@@ -8,7 +8,7 @@ import { Switch } from '@material-ui/core';
 export default function Promo(props) {
     const { handleChangeStatus } = props
     const { id  } = props.promo
-    const { active, category, nameLocal, title, price} = props.promo
+    const { active, nameLocal, title, price} = props.promo
     let status = active
     return (
         <div className="promo">

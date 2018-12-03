@@ -21,3 +21,19 @@
 .navigation-link.selected{
     font-weight: 900;
 }
+
+@media (max-width: 480px){
+    .navigation-container ul{
+        overflow: scroll;
+        height: 100%;;
+        display: flex;
+
+    }
+    .navigation-container ul a{
+        padding-top: 10px;
+        
+    }
+    .navigation-container{
+        padding: 0 5px;
+    }
+}

@@ -33,7 +33,7 @@ export class Header extends Component {
 					</div>
 					<div className="header-nav">
 						<div className="header-account-menu">
-							<div className="header-name-user">
+							<div className="header-name-user-content">
 								<div className="header-avatar">{ email.charAt(0) }</div>
 								<div className="header-name-user">{ email }</div>
 								<Icon icon={ic_arrow_drop_down} />

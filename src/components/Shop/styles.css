@@ -79,3 +79,27 @@ height: 90px;
     font-size: 10px;
     color: gray;
 }
+
+.editLink{
+    background: lightgrey;
+    color: gray;
+    padding: 0px 20px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    font-weight: bold;
+
+}
+
+@media(max-width: 480px){
+    .shops-wrapper{
+        display: block;
+    }
+    .shops-filter,
+    .shops-list{
+        width: 100%;
+    }
+
+
+}

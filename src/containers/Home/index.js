@@ -13,19 +13,22 @@ class Home extends Component {
 			{
 				name: 'Nuevo Usuario',
 				link: '/add/user',
-				icon: userPlus
+				icon: userPlus,
+				key: 1
 
 			},
 			{
 				name: 'Nueva pomo',
 				link: 'promos/add',
-				icon: u1F37B
+				icon: u1F37B,
+				key: 2
 				
 			},
 			{
 				name: 'Nueva Tienda',
 				link: 'shop/add',
-				icon: u1F3E0
+				icon: u1F3E0,
+				key: 3
 			}
 		]
 	}
@@ -38,7 +41,7 @@ class Home extends Component {
 					<div className="dashboard-items">
 						{
 							this.state.items.map(item =>
-								<div className="item">
+								<div key={item.key} className="item">
 									<Link to={item.link} className="item-content">
 										<Icon icon={item.icon} size={30} />
 										{item.name}

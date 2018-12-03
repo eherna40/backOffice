@@ -1,6 +1,5 @@
 import { firebaseApp as firebase, database } from './config'
 import { KEY_GOOGLE_MAPS } from '../constant';
-import { googleMapsClient } from '../googlemaps';
 
 
 export const signOutAdmin = () => {
@@ -57,11 +56,12 @@ export const verifyPermission = async (uid) => {
 }
 
 export const shopCreate = async (place) => {
+    console.log(place)
     let res = false
     const timestamp = firebase.firestore.FieldValue.serverTimestamp()
     console.log(place.place_id)
     const ref = await database.collection("LOCALS").doc(place.place_id)
-    const exist = ref.get().then(res => res.exist)
+    const exist = await ref.get().then(res => console.log(res.exists))
     if (exist) {
         await ref.set({
             ...place,
@@ -76,6 +76,19 @@ export const shopCreate = async (place) => {
                 console.error("Error adding document: ", error);
             });
 
+    }else{
+        await ref.set({
+            ...place,
+            errollment: timestamp,
+            modify: timestamp
+        })
+            .then((docRef) => {
+                res = true
+            })
+            .catch(function (error) {
+                res = false
+                console.error("Error adding document: ", error);
+            });
     }
 
     return res
@@ -84,8 +97,22 @@ export const shopCreate = async (place) => {
 
 }
 
-export const shopModify = (values) => {
+export const shopModify = async(values) => {
+    const shop = await database.collection("LOCALS").doc(values.place_id)
+    .update({
+        ...values
+    })
+        .then(function () {
+            console.log("Document successfully updated!");
+            return true
+        })
+        .catch(function (error) {
+            // The document probably doesn't exist.
+            console.error("Error updating document: ", error);
+            return error
+        });
 
+        return shop
 }
 
 export const shopGetAll = async () => {
@@ -109,7 +136,16 @@ export const catGetAll = async () => {
     return cat
 }
 
-export const shopGetOnly = () => {
+export const shopGetOnly = async(id) => {
+
+    const shop = await database.collection("LOCALS").doc(id)
+        .get()
+        .then(snap => { return {status: 'success', ...snap.data()} })
+        .catch(function (error) {
+            console.log("Error getting documents: ", error);
+        });
+        
+        return shop
 
 }
 export const pagesGetAll = async () => {
@@ -319,11 +355,11 @@ export const getPlaceById = async (placeId) => {
 
 export const getPredictions = async (value, token) => {
 
-    googleMapsClient.placesAutoComplete({
-        input: value,
-        sessiontoken: token
+    // googleMapsClient.placesAutoComplete({
+    //     input: value,
+    //     sessiontoken: token
 
-    })
+    // })
     const predictions = await fetch(`https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${value}&components=country:es&key=AIzaSyAywy0bnd4SnrC87Yx01_wD5yOBbOqoZPU`)
         .then(res => res.json())
         .then(res => res)

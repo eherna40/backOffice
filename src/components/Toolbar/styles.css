@@ -1,5 +1,6 @@
 .toolbar-container{
     margin: 10px 0px;
+    color: grey;
 }
 
 .toolbar-title{
@@ -24,4 +25,18 @@
     align-items: center;
     border-radius: 4px;
     font-weight: bold;
+}
+.navigation-container ul{
+    overflow: scroll;
+    height: 100%;;
+    display: flex;
+}
+
+@media (max-width: 480px){
+    .tootlbar-name-add{
+        display: block;
+    }
+    .navigation-add{
+        padding: 10px 20px;
+    }
 }

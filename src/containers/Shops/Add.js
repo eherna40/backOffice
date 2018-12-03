@@ -13,8 +13,23 @@ import Loading from '../../components/Loading';
 import FormAddShop from '../../components/Forms/FormAddShop';
 import Close from '../../components/Forms/Close';
 
+import PlacesAutocomplete, {
+    geocodeByPlaceId,
+    getLatLng,
+    geocodeByAddress
+} from 'react-places-autocomplete';
+
+
+const searchOptions = {
+    componentRestrictions: {
+        country: 'es'
+    }
+  }
+
 export class Add extends Component {
     state = {
+        nameSelected: '',
+        address: '',
         autocomplete: false,
         name: '',
         postal_code: '',
@@ -39,22 +54,24 @@ export class Add extends Component {
 
     }
 
+
+
     componentDidMount = () => {
 
-        firebase.auth().signInAnonymously()
-            .then(res => res.user.toJSON())
-            .then(res => {
-                this.setState({
-                    token: res.stsTokenManager.accessToken
-                })
-            })
-            .catch(function (error) {
-                console.log(error)
-                // Handle Errors here.
-                // var errorCode = error.code;
-                // var errorMessage = error.message;
-                // ...
-            });
+        // firebase.auth().signInAnonymously()
+        //     .then(res => res.user.toJSON())
+        //     .then(res => {
+        //         this.setState({
+        //             token: res.stsTokenManager.accessToken
+        //         })
+        //     })
+        //     .catch(function (error) {
+        //         console.log(error)
+        //         // Handle Errors here.
+        //         // var errorCode = error.code;
+        //         // var errorMessage = error.message;
+        //         // ...
+        //     });
 
         this.form.addEventListener('mousedown', this.onClickCapture)
     }
@@ -85,6 +102,7 @@ export class Add extends Component {
 
     handleClickSubmit = () => {
         const place = {
+
             user: this.state.user,
             password: this.state.password,
             email: this.state.email,
@@ -120,10 +138,10 @@ export class Add extends Component {
         if (!result) {
             this.handleBlurCloseAutoComplete()
         }
+
     }
 
     handelClickCapture = (el) => {
-        console.log(el.currentTarget)
     }
 
     componentWillUnmount = () => {
@@ -131,21 +149,35 @@ export class Add extends Component {
     }
 
     handleSelectLocal = (el) => {
-        getPlaceById()
+        console.log(el)
+        //getPlaceById()
     }
 
-    handleSelectClick = async (id) => {
-        const place = await getPlaceById(id)
+    handleSelectClick = async (item) => {
+        console.log(item)
+        const { placeId } = item
+        const name = item.formattedSuggestion.mainText
+        this.setState({
+            selected: true
+        })
+
+        const place = await geocodeByPlaceId(placeId)
+        .then(results => { 
+            
+            return results[0]
+        
+        })
+        .catch(error => console.error(error));
+        // const place = await getPlaceById(id)
         const {
             formatted_address,
             formatted_phone_number,
-            geometry,
+            //geometry,
             icon,
-            name,
             place_id,
             website,
             address_components,
-        } = place.result
+        } = place
 
 
         address_components.map(item => {
@@ -155,10 +187,10 @@ export class Add extends Component {
             return true
         })
         this.setState({
+            name: name,
             autocomplete: false,
-            name: name ? name : '',
             place_id,
-            geometry,
+            //geometry,
             formatted_address: formatted_address ? formatted_address : '',
             formatted_phone_number: formatted_phone_number ? formatted_phone_number : '',
             icon: icon ? icon : '',
@@ -171,6 +203,7 @@ export class Add extends Component {
     handleChangeChecked = () => { this.setState({ active: !this.state.active }) }
 
     handleChangeInput = (el) => {
+
         this.setState({
             [el.target.name]: el.target.value
         })
@@ -180,9 +213,25 @@ export class Add extends Component {
         this.props.history.goBack()
     }
 
+
+    handleChange = name => {
+       console.log(this.state.nameSelected)
+            this.setState({ name: name ,
+                autocomplete: true
+            });
+    };
+
+    handleSelect = address => {
+        // geocodeByAddress(address)
+        //     .then(results => getLatLng(results[0]))
+        //     .then(latLng => console.log('Success', latLng))
+        //     .catch(error => console.error('Error', error));
+    };
+
     render() {
-        const { predictions } = this.props
         return (
+
+
             <div className="add-shop">
                 {
                     this.props.sync && <Loading />
@@ -201,11 +250,31 @@ export class Add extends Component {
                         <div className="add-shop-form-container">
                             <div className="add-shop-input-container">
                                 <div id="autocomplete" className="input-content-name">
-                                    <Input handleFocusAutoComplete={this.handleFocusAutoComplete} value={this.state.name} handleChange={this.handleChangeName} label="Nombre" />
-                                    {
+                                    <PlacesAutocomplete
+                                        value={this.state.name !== undefined ? this.state.name : this.state.nameSelected }
+                                        onChange={this.handleChange}
+                                        onSelect={() => this.handleSelect}
+                                        searchOptions={searchOptions}
+                                    >
+                                        {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => {
+                                            
+                                            return (
+                                                <div>
+                                                    <Input getInputProps={getInputProps} handleChangePlaceAutocomplete={this.handleChange} placeautocomplete={true} handleFocusAutoComplete={this.handleFocusAutoComplete} value={this.state.name} handleChange={this.handleChangeName} label="Nombre" />
+                                                   {
+                                                       suggestions.length > 0 && <AutoComplete getSuggestionItemProps={getSuggestionItemProps} id='autocomplete' handleSelectClick={this.handleSelectClick} visible={this.state.autocomplete} predictions={suggestions} />
+                                                       
+                                                } 
+
+                                                </div>
+
+                                        )}}
+                                        
+                                        </PlacesAutocomplete>
+                                    {/* {
                                         predictions.length > 0 && <AutoComplete id='autocomplete' handleSelectClick={this.handleSelectClick} visible={this.state.autocomplete} predictions={predictions} />
 
-                                    }
+                                    } */}
                                 </div>
                                 <div className="input-content-street">
                                     <Input name='route' handleChange={this.handleChangeInput} value={this.state.route} label="Calle" />

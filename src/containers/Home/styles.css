@@ -34,3 +34,12 @@
   background: lightgray;
 
 }
+
+@media (max-width: 480px){
+  .dashboard-items{
+    flex-direction: column;
+  }
+  .item{
+    width: 100%;
+  }
+}

@@ -37,7 +37,7 @@ export class Login extends Component {
       console.log(this.props.sync)
     return (
       <div className="login">
-        <div className="container">
+        <div className="login-container">
             <div className="form-login">
             {
                 this.props.error && <Notifications />

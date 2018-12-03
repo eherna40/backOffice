@@ -27,9 +27,7 @@ export class Shops extends Component {
 	}
 
 	handleClickSelected = (item) => {
-		this.setState({
-			selected: item
-		})
+console.log(item)
 	}
 	render() {
 

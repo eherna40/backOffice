@@ -31,7 +31,7 @@
     align-items: center;
 }
 
-.header-name-user{
+.header-name-user-content{
     display: flex; 
     align-items: center;
     margin-left: 20px;
@@ -77,4 +77,14 @@
 
 .header-account-menu:hover .header-nav-container{
     display: block;
+}
+
+
+@media (max-width: 480px){
+    .header-container{
+        padding: 0 10px;
+    }
+    .header-name-user{
+        display: none;
+    }
 }
